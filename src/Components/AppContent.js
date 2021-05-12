@@ -36,8 +36,28 @@ function AppContent() {
         <Folder />
         <Folder />
         <Folder />
-
-
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
+        <Folder />
       </Folders>
     </Wrapper>
   );
@@ -52,6 +72,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Wrapper = styled.div`
+overflow:scroll;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -68,9 +90,18 @@ const Overview = styled.div`
     width: 95%;
     margin: auto;
   }
+  @media (max-width: 633px) {
+      h4{
+        padding: 0px 40px 5px 10px;
+
+      }    
+  }
 `;
 const AppButtons = styled.div`
   /* border: 1px solid red; */
+  background:#FFFFFF;
+  position:sticky;
+  top: 0;
   button {
     margin: 20px 0px 20px 30px;
   }
@@ -92,8 +123,11 @@ const AppButtons = styled.div`
 const Folders = styled.div`
   /* border: 1px solid red; */
   height: 100%;
-  padding: 40px;
+  padding:40px 20px;
   display: flex;
+  flex-wrap: wrap;
+  /* overflow: scroll;
+
   /* flex-direction: column; */
   /* align-items: center; */
   /* justify-content: center; */

@@ -25,6 +25,9 @@ const SingleFolder = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding:0px 30px;
+  padding:20px 30px;
   /* border:solid 1px red;   */
+  &:hover{
+    background:#F2F2F2
+  }
 `;

@@ -38,6 +38,14 @@ const SidebarWrapper = styled.div`
   width: 240px;
   min-width: 240px;
   background: #f2f2f2;
+  @media (max-width: 633px) {
+    /* display:none; */
+    height:100vh;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 `;
 const NavLogo = styled.div`
   flex: 0.2;
