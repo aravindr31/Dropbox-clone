@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Wrapper = styled.div`
-overflow:scroll;
+  overflow: scroll;
   /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
@@ -91,16 +91,15 @@ const Overview = styled.div`
     margin: auto;
   }
   @media (max-width: 633px) {
-      h4{
-        padding: 0px 40px 5px 10px;
-
-      }    
+    h4 {
+      padding: 0px 40px 5px 10px;
+    }
   }
 `;
 const AppButtons = styled.div`
   /* border: 1px solid red; */
-  background:#FFFFFF;
-  position:sticky;
+  background: #ffffff;
+  position: sticky;
   top: 0;
   button {
     margin: 20px 0px 20px 30px;
@@ -123,7 +122,7 @@ const AppButtons = styled.div`
 const Folders = styled.div`
   /* border: 1px solid red; */
   height: 100%;
-  padding:40px 20px;
+  padding: 40px 20px;
   display: flex;
   flex-wrap: wrap;
   /* overflow: scroll;
