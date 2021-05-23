@@ -1,21 +1,26 @@
-import "./App.css";
-import Activezone from "./Components/Activezone";
-import AppContent from "./Components/AppContent";
+import "./Common.css";
+import DashBoard from "./Components/DashBoard";
 import Login from "./Components/Login";
-import Sidebar from "./Components/Sidebar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
+
   return (
-    <div className="App">
-      {/* <Login /> */}
-      <div className="App_Sidebar">
-      <Sidebar />
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/folder/:foid">
+            <DashBoard />
+          </Route>
+          <Route path="/">
+            <DashBoard />
+          </Route>
+        </Switch>
       </div>
-      <div className="App_Body">
-      <Activezone />
-      <AppContent />
-      </div>
-    </div>
+    </Router>
   );
 }
 

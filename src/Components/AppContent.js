@@ -1,11 +1,19 @@
-import { Button } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import { makeStyles } from "@material-ui/core/styles";
 import Folder from "./Folder";
+import { useStateProviderValue } from "../StateProvider";
+import CreateFolder from "./CreateFolder";
+import useFolder from "../useFolder";
+import { useParams } from "react-router-dom";
+import UploadFiles from "./UploadFiles";
+import File from "./File";
+
 function AppContent() {
-  const classes = useStyles();
+  const [{ folder, folderId, childFolders, childFiles }, dispatch] =
+    useStateProviderValue();
+  console.log(folder);
+  useFolder(useParams());
+  console.log(childFolders,childFiles);
   return (
     <Wrapper>
       <Overview>
@@ -13,51 +21,15 @@ function AppContent() {
         <hr color="lightgrey" size="1" />
       </Overview>
       <AppButtons>
-        <Button
-          variant="contained"
-          className={classes.button}
-          startIcon={<CloudUploadIcon />}
-        >
-          Upload folder
-        </Button>
-        <Button
-          variant="contained"
-          className={classes.button}
-          startIcon={<CloudUploadIcon />}
-        >
-          Upload File
-        </Button>
-        <hr color="lightgrey" size="1" />
+        <CreateFolder currentFolder={folder} />
+        <UploadFiles currentFolder={folder} />
       </AppButtons>
+      <hr style={hrStyle} size="1" />
       <Folders>
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
-        <Folder />
+        {childFolders.length > 0 &&
+          childFolders.map((Cfolder) => <Folder Fodata={Cfolder} />)}
+        {childFiles.length > 0 &&
+          childFiles.map((file) => <File Fidata={file} />)}
       </Folders>
     </Wrapper>
   );
@@ -65,15 +37,14 @@ function AppContent() {
 
 export default AppContent;
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
+const hrStyle = {
+  width: "95%",
+  margin: "auto",
+  color: "lightgrey",
+};
 
 const Wrapper = styled.div`
   overflow: scroll;
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -97,10 +68,11 @@ const Overview = styled.div`
   }
 `;
 const AppButtons = styled.div`
-  /* border: 1px solid red; */
   background: #ffffff;
   position: sticky;
   top: 0;
+  display: flex;
+  align-items: center;
   button {
     margin: 20px 0px 20px 30px;
   }
@@ -120,14 +92,8 @@ const AppButtons = styled.div`
   }
 `;
 const Folders = styled.div`
-  /* border: 1px solid red; */
   height: 100%;
-  padding: 40px 20px;
+  padding: 30px 20px;
   display: flex;
   flex-wrap: wrap;
-  /* overflow: scroll;
-
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
 `;

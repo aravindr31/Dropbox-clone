@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDropbox } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -15,7 +16,11 @@ function Sidebar() {
         />
       </NavLogo>
       <Navlist>
-        <NavItems>Home</NavItems>
+        <NavItems>
+          <Link to="/" style={customStyles.linkStyle}>
+            Home
+          </Link>
+        </NavItems>
         <NavItems>All files</NavItems>
         <NavItems>Recents</NavItems>
         <NavItems>Starred</NavItems>
@@ -28,6 +33,12 @@ function Sidebar() {
 }
 
 export default Sidebar;
+const customStyles = {
+  linkStyle: {
+    "text-decoration": "none",
+    color: "#000",
+  },
+};
 
 const SidebarWrapper = styled.div`
   display: flex;
@@ -39,8 +50,7 @@ const SidebarWrapper = styled.div`
   min-width: 240px;
   background: #f2f2f2;
   @media (max-width: 633px) {
-    /* display:none; */
-    height:100vh;
+    height: 100vh;
     z-index: 1000;
     position: absolute;
     top: 0;

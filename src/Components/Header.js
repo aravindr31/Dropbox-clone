@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import AppsIcon from "@material-ui/icons/Apps";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { Avatar } from "@material-ui/core";
+import { Avatar, Breadcrumbs } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-function Activezone() {
+import { useStateProviderValue } from "../StateProvider";
+import FolderBreadcrumbs from "./FolderBreadcrumbs";
+import Progressbar from "./Progressbar";
+function Header() {
+  const [{ User, folder, progressLevel }] = useStateProviderValue();
+  console.log(progressLevel);
   return (
     <Wrapper>
-      <AlertSilder></AlertSilder>
+      <AlertSilder>{progressLevel != 0 && <Progressbar />}</AlertSilder>
       <MediaConatiner>
         <MenuContainer>
           <div className="menuConatiner_right">
@@ -19,7 +24,10 @@ function Activezone() {
             <HelpOutlineIcon className="menuItems" />
             <AppsIcon className="menuItems" />
             <NotificationsIcon className="menuItems" />
-            <Avatar style={{ height: "30px", width: "30px" }} />
+            <Avatar
+              src={User?.photoURL}
+              style={{ height: "30px", width: "30px" }}
+            />
           </div>
         </MenuContainer>
         <SearchContainer>
@@ -29,7 +37,7 @@ function Activezone() {
       </MediaConatiner>
       <NavPannel>
         <NavHead>
-          <h1>Dropbox</h1>
+          <FolderBreadcrumbs currentFolder={folder} />
         </NavHead>
         <NavMenu>
           <SearchWrapper>
@@ -39,14 +47,16 @@ function Activezone() {
           <HelpOutlineIcon />
           <AppsIcon />
           <NotificationsIcon />
-          <Avatar style={{ height: "30px", width: "30px" }} />
+          <Avatar
+            src={User?.photoURL}
+            style={{ height: "30px", width: "30px" }}
+          />
         </NavMenu>
       </NavPannel>
     </Wrapper>
   );
 }
-
-export default Activezone;
+export default Header;
 
 const Wrapper = styled.div`
   display: flex;
@@ -58,7 +68,10 @@ const Wrapper = styled.div`
 `;
 const AlertSilder = styled.div`
   min-height: 40px;
-  width: 100%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
   @media (max-width: 633px) {
     display: none;
   }
@@ -67,7 +80,6 @@ const MediaConatiner = styled.div`
   display: none;
   flex-direction: column;
   justify-content: center;
-  /* width:100%; */
   @media (max-width: 633px) {
     display: flex;
   }
@@ -122,9 +134,12 @@ const NavPannel = styled.div`
 const NavHead = styled.div`
   flex: 0.5;
   width: 100%;
-  h1 {
-    font-weight: 600;
-    font-size: 25px;
+  overflow-x: scroll;
+  height: 35px;
+  overflow-y: hidden;
+  overflow-wrap: nowrap;
+  @media (max-width: 633px) {
+    flex:1
   }
 `;
 
